@@ -1,5 +1,7 @@
+@import "variables.scss";
+
 body {
-  background: rgba(238, 37, 97, 0.986);
+  background: $red;
   font-family: "Montserrat";
 }
 
@@ -9,49 +11,65 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 
   &__form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 50px 40px 40px 40px;
-    gap: 25px;
-    max-width: 600px;
-    min-width: 320px;
-    min-height: 450px;
+    padding: 5rem 4rem 4rem 4rem;
+    gap: 2.5rem;
+    max-width: 60rem;
+    min-width: 32rem;
+    min-height: 45rem;
     background-color: white;
-    border-radius: 22px;
+    border-radius: 2.2rem;
+
+    @media (max-width: $breakpoint-sm) {
+      padding: 5rem 2rem 4rem 2rem;
+    }
 
     &-title {
       font-weight: 500;
-      font-size: 40px;
+      font-size: 4rem;
+
+      @media (max-width: $breakpoint-sm) {
+        font-size: 2.8rem;
+      }
     }
 
     &-field-wrap {
       input,
       textarea {
         width: 100%;
-        padding: 20px 10px;
+        padding: 2rem 1rem;
         background-color: rgb(226, 226, 250);
-        border-radius: 22px;
-        font-size: 15px;
-        box-shadow: inset 20px 60px 0px 20px rgb(226, 226, 250);
+        border-radius: 2.2rem;
+        font-size: 1.5rem;
+        box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);
+
+        @media (max-width: $breakpoint-sm) {
+          padding: 1.2rem 1rem;
+        }
       }
 
       textarea {
         resize: none;
+
+        @media (max-height: 735px) {
+          max-height: 15rem;
+        }
       }
     }
 
     &-submit {
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 500;
       width: 100%;
-      padding: 20px 10px;
-      border-radius: 22px;
-      background-color: rgba(238, 37, 97, 0.986);
+      padding: 2rem 1rem;
+      border-radius: 2.2rem;
+      background-color: $red;
     }
   }
 
@@ -60,78 +78,125 @@ body {
     position: relative;
     input,
     textarea {
-      box-shadow: 0 0 15px red;
+      box-shadow: 0 0 1.5rem red;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: -2.5rem;
+      left: 0.5rem;
+      width: 100%;
+      height: 2rem;
+      color: red;
+      font-size: 1.2rem;
+
+      @media (max-width: $breakpoint-sm) {
+        font-size: 1rem;
+      }
     }
   }
 
   .invalid-field {
     &::after {
-      content: "Данное поле обязательно к заполнению" !important;
-      position: absolute;
-      bottom: -22px;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      color: red;
+      content: "Fill in the field!" !important;
     }
   }
 
   .invalid-email {
     &::after {
-      content: "Некорректный email";
-      position: absolute;
-      bottom: -22px;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      color: red;
+      content: "Incorrect email!";
     }
   }
 }
 
+.second-section {
+  min-height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__popup-btn {
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 2rem 1rem;
+    border-radius: 2.2rem;
+    background-color: $blue;
+  }
+}
+
 .popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
+  opacity: 0;
+  visibility: hidden;
   transform: translate(-50%, -50%);
-  display: none;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: rgba($color: #000000, $alpha: 0.4);
+  transition: all $transition-duration-default ease 0s;
 
   &.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    .popup__wrapper {
+      transform: rotateZ(0deg);
+    }
   }
 
   &__wrapper {
     position: relative;
+    width: 90%;
+    max-width: 40rem;
+    transform: rotateZ(90deg);
+    transition: transform $transition-duration-default ease 0s;
   }
 
   &__close-btn {
     position: absolute;
-    top: -20px;
-    right: -15px;
+    top: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    fill: $red;
+    cursor: pointer;
   }
 
   &__content {
-    width: 400px;
-    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
+    width: 100%;
+
+    height: 40rem;
+    padding: 2rem;
     background-color: white;
+    border-radius: 2.2rem;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__result-message {
+    font-size: 3rem;
+    transform: translateY(-100%);
+    text-transform: uppercase;
+  }
+
+  &__result-text {
+    font-size: 2rem;
   }
 
   .popup-info__content {
-    background-color: red;
+    &-title {
+      font-size: 4rem;
+      transform: translateY(-100%);
+    }
   }
-}
-
-.freeze {
-  overflow: hidden;
-}
-
-.padding {
-  padding-right: 17px;
 }

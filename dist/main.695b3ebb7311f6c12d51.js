@@ -10213,10 +10213,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
 // Imports
 
 
+
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./fonts/Montserrat-Medium.woff */ "./src/fonts/Montserrat-Medium.woff"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ./fonts/Montserrat-Regular.woff */ "./src/fonts/Montserrat-Regular.woff"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
+var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_1___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `@charset "UTF-8";
 /*Обнуление*/
@@ -10253,9 +10260,8 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-size: 100%;
+  font-size: 10px;
   line-height: 1;
-  font-size: 14px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -10310,8 +10316,12 @@ h6 {
 }
 
 /*--------------------*/
+/* Colors */
+/* Transitions */
+/* Breakpoints */
 body {
   background: rgba(238, 37, 97, 0.986);
+  font-family: "Montserrat";
 }
 
 .hero-section {
@@ -10320,38 +10330,64 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .hero-section__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px 40px 40px 40px;
-  gap: 25px;
-  width: 25%;
-  min-height: 450px;
-  min-width: 320px;
+  padding: 5rem 4rem 4rem 4rem;
+  gap: 2.5rem;
+  max-width: 60rem;
+  min-width: 32rem;
+  min-height: 45rem;
   background-color: white;
-  border-radius: 22px;
+  border-radius: 2.2rem;
+}
+@media (max-width: 576px) {
+  .hero-section__form {
+    padding: 5rem 2rem 4rem 2rem;
+  }
 }
 .hero-section__form-title {
-  font-family: "Montserrat";
   font-weight: 500;
-  font-size: 40px;
+  font-size: 4rem;
+}
+@media (max-width: 576px) {
+  .hero-section__form-title {
+    font-size: 2.8rem;
+  }
 }
 .hero-section__form-field-wrap input,
 .hero-section__form-field-wrap textarea {
   width: 100%;
-  padding: 20px 10px;
+  padding: 2rem 1rem;
   background-color: rgb(226, 226, 250);
-  border-radius: 22px;
+  border-radius: 2.2rem;
+  font-size: 1.5rem;
+  box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);
+}
+@media (max-width: 576px) {
+  .hero-section__form-field-wrap input,
+  .hero-section__form-field-wrap textarea {
+    padding: 1.2rem 1rem;
+  }
 }
 .hero-section__form-field-wrap textarea {
   resize: none;
 }
+@media (max-height: 735px) {
+  .hero-section__form-field-wrap textarea {
+    max-height: 15rem;
+  }
+}
 .hero-section__form-submit {
+  font-size: 2rem;
+  font-weight: 500;
   width: 100%;
-  padding: 20px 10px;
-  border-radius: 22px;
+  padding: 2rem 1rem;
+  border-radius: 2.2rem;
   background-color: rgba(238, 37, 97, 0.986);
 }
 .hero-section .invalid-field,
@@ -10362,61 +10398,104 @@ body {
 .hero-section .invalid-field textarea,
 .hero-section .invalid-email input,
 .hero-section .invalid-email textarea {
-  box-shadow: 0 0 15px red;
+  box-shadow: 0 0 1.5rem red;
 }
 .hero-section .invalid-field::after {
   content: "Данное поле обязательно к заполнению" !important;
 }
 .hero-section .invalid-field::after {
   position: absolute;
-  bottom: -22px;
+  bottom: -2.2rem;
   left: 0;
   width: 100%;
-  height: 20px;
+  height: 2rem;
   color: red;
 }
 .hero-section .invalid-email::after {
   content: "Некорректный email";
   position: absolute;
-  bottom: -22px;
+  bottom: -2.2rem;
   left: 0;
   width: 100%;
-  height: 20px;
+  height: 2rem;
   color: red;
 }
 
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.4);
+.second-section {
+  min-height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.popup.active {
+.second-section__popup-btn {
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 2rem 1rem;
+  border-radius: 2.2rem;
+  background-color: rgba(89, 130, 245, 0.986);
+}
+
+.popup {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease 0s;
+}
+.popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+.popup.active .popup__wrapper {
+  position: relative;
+  transform: rotateZ(0deg);
 }
 .popup__wrapper {
   position: relative;
+  transform: rotateZ(90deg);
+  transition: transform 0.3s ease 0s;
 }
 .popup__close-btn {
   position: absolute;
-  top: -20px;
-  right: -15px;
+  top: 2rem;
+  right: 1.5rem;
+  cursor: pointer;
 }
 .popup__content {
-  width: 400px;
-  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+  width: 40rem;
+  height: 40rem;
+  padding: 2rem;
   background-color: white;
+  border-radius: 2.2rem;
+  font-size: 16px;
+  font-weight: 500;
 }
-.popup .popup-info__content {
-  background-color: red;
+.popup__result-message {
+  font-size: 3rem;
+  transform: translateY(-100%);
+  text-transform: uppercase;
+}
+.popup__result-text {
+  font-size: 2rem;
+}
+.popup .popup-info__content-title {
+  font-size: 4rem;
+  transform: translateY(-100%);
 }
 
 .freeze {
@@ -10425,7 +10504,21 @@ body {
 
 .padding {
   padding-right: 17px;
-}`, "",{"version":3,"sources":["webpack://./src/index.scss","webpack://./src/scss/_normalize.scss","webpack://./src/scss/_main.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACAhB,YAAA;AACA;EACE,UAAA;EACA,SAAA;EACA,SAAA;ADEF;;ACAA;;;EAKE,sBAAA;ADGF;;ACDA;;EAEE,aAAA;ADIF;;ACFA;;EAEE,aAAA;ADKF;;ACFA;;;;EAIE,cAAA;ADKF;;ACFA;;EAEE,YAAA;EACA,WAAA;EACA,eAAA;EACA,cAAA;EACA,eAAA;EACA,0BAAA;EACA,2BAAA;EACA,8BAAA;ADKF;;ACHA;;;EAGE,oBAAA;ADMF;;ACHA;EACE,aAAA;ADMF;;ACJA;EACE,eAAA;ADOF;;ACLA;EACE,UAAA;EACA,SAAA;ADQF;;ACNA;;EAEE,6BAAA;EAAA,qBAAA;ADSF;;ACPA;EACE,6BAAA;EAAA,qBAAA;ADUF;;ACRA;EACE,gBAAA;ADWF;;ACTA;EACE,mBAAA;ADYF;;ACTA;;;;;;EAME,kBAAA;EACA,gBAAA;ADYF;;ACVA,uBAAA;AC/EA;EACE,oCAAA;AF6FF;;AE1FA;EACE,iBAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;AF6FF;AE3FE;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,4BAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;EACA,gBAAA;EACA,uBAAA;EACA,mBAAA;AF6FJ;AE3FI;EACE,yBAAA;EACA,gBAAA;EACA,eAAA;AF6FN;AEzFM;;EAEE,WAAA;EACA,kBAAA;EACA,oCAAA;EACA,mBAAA;AF2FR;AEpFM;EAEE,YAAA;AFqFR;AEjFI;EACE,WAAA;EACA,kBAAA;EACA,mBAAA;EACA,0CAAA;AFmFN;AE/EE;;EAEE,kBAAA;AFiFJ;AEhFI;;;;EAEE,wBAAA;AFoFN;AE/EI;EACE,0DAAA;AFuFN;AExFI;EAEE,kBAAA;EACA,aAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA;EACA,UAAA;AFiFN;AE5EI;EACE,6BAAA;EACA,kBAAA;EACA,aAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA;EACA,UAAA;AF8EN;;AEzEA;EACE,eAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;EACA,oCAAA;AF4EF;AE1EE;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;AF4EJ;AEzEE;EACE,kBAAA;AF2EJ;AExEE;EACE,kBAAA;EACA,UAAA;EACA,YAAA;AF0EJ;AEvEE;EACE,YAAA;EACA,aAAA;EACA,uBAAA;AFyEJ;AEtEE;EACE,qBAAA;AFwEJ;;AEpEA;EACE,gBAAA;AFuEF;;AEpEA;EACE,mBAAA;AFuEF","sourcesContent":["@charset \"UTF-8\";\n/*Обнуление*/\n* {\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n*,\n*:before,\n*:after {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\n:focus,\n:active {\n  outline: none;\n}\n\na:focus,\na:active {\n  outline: none;\n}\n\nnav,\nfooter,\nheader,\naside {\n  display: block;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n  font-size: 100%;\n  line-height: 1;\n  font-size: 14px;\n  -ms-text-size-adjust: 100%;\n  -moz-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\n\ninput,\nbutton,\ntextarea {\n  font-family: inherit;\n}\n\ninput::-ms-clear {\n  display: none;\n}\n\nbutton {\n  cursor: pointer;\n}\n\nbutton::-moz-focus-inner {\n  padding: 0;\n  border: 0;\n}\n\na,\na:visited {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\nul li {\n  list-style: none;\n}\n\nimg {\n  vertical-align: top;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: 400;\n}\n\n/*--------------------*/\nbody {\n  background: rgba(238, 37, 97, 0.986);\n}\n\n.hero-section {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.hero-section__form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 50px 40px 40px 40px;\n  gap: 25px;\n  width: 25%;\n  min-height: 450px;\n  min-width: 320px;\n  background-color: white;\n  border-radius: 22px;\n}\n.hero-section__form-title {\n  font-family: \"Montserrat\";\n  font-weight: 500;\n  font-size: 40px;\n}\n.hero-section__form-field-wrap input,\n.hero-section__form-field-wrap textarea {\n  width: 100%;\n  padding: 20px 10px;\n  background-color: rgb(226, 226, 250);\n  border-radius: 22px;\n}\n.hero-section__form-field-wrap textarea {\n  resize: none;\n}\n.hero-section__form-submit {\n  width: 100%;\n  padding: 20px 10px;\n  border-radius: 22px;\n  background-color: rgba(238, 37, 97, 0.986);\n}\n.hero-section .invalid-field,\n.hero-section .invalid-email {\n  position: relative;\n}\n.hero-section .invalid-field input,\n.hero-section .invalid-field textarea,\n.hero-section .invalid-email input,\n.hero-section .invalid-email textarea {\n  box-shadow: 0 0 15px red;\n}\n.hero-section .invalid-field::after {\n  content: \"Данное поле обязательно к заполнению\" !important;\n  position: absolute;\n  bottom: -22px;\n  left: 0;\n  width: 100%;\n  height: 20px;\n  color: red;\n}\n.hero-section .invalid-email::after {\n  content: \"Некорректный email\";\n  position: absolute;\n  bottom: -22px;\n  left: 0;\n  width: 100%;\n  height: 20px;\n  color: red;\n}\n\n.popup {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  display: none;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.4);\n}\n.popup.active {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.popup__wrapper {\n  position: relative;\n}\n.popup__close-btn {\n  position: absolute;\n  top: -20px;\n  right: -15px;\n}\n.popup__content {\n  width: 400px;\n  height: 400px;\n  background-color: white;\n}\n.popup .popup-info__content {\n  background-color: red;\n}\n\n.freeze {\n  overflow: hidden;\n}\n\n.padding {\n  padding-right: 17px;\n}","/*Обнуление*/\r\n* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  -moz-box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n:focus,\r\n:active {\r\n  outline: none;\r\n}\r\na:focus,\r\na:active {\r\n  outline: none;\r\n}\r\n\r\nnav,\r\nfooter,\r\nheader,\r\naside {\r\n  display: block;\r\n}\r\n\r\nhtml,\r\nbody {\r\n  height: 100%;\r\n  width: 100%;\r\n  font-size: 100%;\r\n  line-height: 1;\r\n  font-size: 14px;\r\n  -ms-text-size-adjust: 100%;\r\n  -moz-text-size-adjust: 100%;\r\n  -webkit-text-size-adjust: 100%;\r\n}\r\ninput,\r\nbutton,\r\ntextarea {\r\n  font-family: inherit;\r\n}\r\n\r\ninput::-ms-clear {\r\n  display: none;\r\n}\r\nbutton {\r\n  cursor: pointer;\r\n}\r\nbutton::-moz-focus-inner {\r\n  padding: 0;\r\n  border: 0;\r\n}\r\na,\r\na:visited {\r\n  text-decoration: none;\r\n}\r\na:hover {\r\n  text-decoration: none;\r\n}\r\nul li {\r\n  list-style: none;\r\n}\r\nimg {\r\n  vertical-align: top;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n  font-size: inherit;\r\n  font-weight: 400;\r\n}\r\n/*--------------------*/\r\n","body {\r\n  background: rgba(238, 37, 97, 0.986);\r\n}\r\n\r\n.hero-section {\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n\r\n  &__form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding: 50px 40px 40px 40px;\r\n    gap: 25px;\r\n    width: 25%;\r\n    min-height: 450px;\r\n    min-width: 320px;\r\n    background-color: white;\r\n    border-radius: 22px;\r\n\r\n    &-title {\r\n      font-family: \"Montserrat\";\r\n      font-weight: 500;\r\n      font-size: 40px;\r\n    }\r\n\r\n    &-field-wrap {\r\n      input,\r\n      textarea {\r\n        width: 100%;\r\n        padding: 20px 10px;\r\n        background-color: rgb(226, 226, 250);\r\n        border-radius: 22px;\r\n      }\r\n\r\n      input {\r\n        // border-bottom: 1px solid grey;\r\n      }\r\n\r\n      textarea {\r\n        // border: 1px solid grey;\r\n        resize: none;\r\n      }\r\n    }\r\n\r\n    &-submit {\r\n      width: 100%;\r\n      padding: 20px 10px;\r\n      border-radius: 22px;\r\n      background-color: rgba(238, 37, 97, 0.986);\r\n    }\r\n  }\r\n\r\n  .invalid-field,\r\n  .invalid-email {\r\n    position: relative;\r\n    input,\r\n    textarea {\r\n      box-shadow: 0 0 15px red;\r\n    }\r\n  }\r\n\r\n  .invalid-field {\r\n    &::after {\r\n      content: \"Данное поле обязательно к заполнению\" !important;\r\n      position: absolute;\r\n      bottom: -22px;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 20px;\r\n      color: red;\r\n    }\r\n  }\r\n\r\n  .invalid-email {\r\n    &::after {\r\n      content: \"Некорректный email\";\r\n      position: absolute;\r\n      bottom: -22px;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 20px;\r\n      color: red;\r\n    }\r\n  }\r\n}\r\n\r\n.popup {\r\n  position: fixed;\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n  display: none;\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  background-color: rgba($color: #000000, $alpha: 0.4);\r\n\r\n  &.active {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n  }\r\n\r\n  &__wrapper {\r\n    position: relative;\r\n  }\r\n\r\n  &__close-btn {\r\n    position: absolute;\r\n    top: -20px;\r\n    right: -15px;\r\n  }\r\n\r\n  &__content {\r\n    width: 400px;\r\n    height: 400px;\r\n    background-color: white;\r\n  }\r\n\r\n  .popup-info__content {\r\n    background-color: red;\r\n  }\r\n}\r\n\r\n.freeze {\r\n  overflow: hidden;\r\n}\r\n\r\n.padding {\r\n  padding-right: 17px;\r\n}\r\n"],"sourceRoot":""}]);
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(${___CSS_LOADER_URL_REPLACEMENT_0___}) format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(${___CSS_LOADER_URL_REPLACEMENT_1___}) format("woff");
+  font-weight: 400;
+}
+/* Colors */
+/* Transitions */
+/* Breakpoints */`, "",{"version":3,"sources":["webpack://./src/index.scss","webpack://./src/scss/_normalize.scss","webpack://./src/scss/_variables.scss","webpack://./src/scss/_main.scss","webpack://./src/scss/_fonts.scss"],"names":[],"mappings":"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","sourcesContent":["@charset \"UTF-8\";\n/*Обнуление*/\n* {\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n*,\n*:before,\n*:after {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\n:focus,\n:active {\n  outline: none;\n}\n\na:focus,\na:active {\n  outline: none;\n}\n\nnav,\nfooter,\nheader,\naside {\n  display: block;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n  font-size: 10px;\n  line-height: 1;\n  -ms-text-size-adjust: 100%;\n  -moz-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\n\ninput,\nbutton,\ntextarea {\n  font-family: inherit;\n}\n\ninput::-ms-clear {\n  display: none;\n}\n\nbutton {\n  cursor: pointer;\n}\n\nbutton::-moz-focus-inner {\n  padding: 0;\n  border: 0;\n}\n\na,\na:visited {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\nul li {\n  list-style: none;\n}\n\nimg {\n  vertical-align: top;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: 400;\n}\n\n/*--------------------*/\n/* Colors */\n/* Transitions */\n/* Breakpoints */\nbody {\n  background: rgba(238, 37, 97, 0.986);\n  font-family: \"Montserrat\";\n}\n\n.hero-section {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-left: 2rem;\n  padding-right: 2rem;\n}\n.hero-section__form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 5rem 4rem 4rem 4rem;\n  gap: 2.5rem;\n  max-width: 60rem;\n  min-width: 32rem;\n  min-height: 45rem;\n  background-color: white;\n  border-radius: 2.2rem;\n}\n@media (max-width: 576px) {\n  .hero-section__form {\n    padding: 5rem 2rem 4rem 2rem;\n  }\n}\n.hero-section__form-title {\n  font-weight: 500;\n  font-size: 4rem;\n}\n@media (max-width: 576px) {\n  .hero-section__form-title {\n    font-size: 2.8rem;\n  }\n}\n.hero-section__form-field-wrap input,\n.hero-section__form-field-wrap textarea {\n  width: 100%;\n  padding: 2rem 1rem;\n  background-color: rgb(226, 226, 250);\n  border-radius: 2.2rem;\n  font-size: 1.5rem;\n  box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\n}\n@media (max-width: 576px) {\n  .hero-section__form-field-wrap input,\n  .hero-section__form-field-wrap textarea {\n    padding: 1.2rem 1rem;\n  }\n}\n.hero-section__form-field-wrap textarea {\n  resize: none;\n}\n@media (max-height: 735px) {\n  .hero-section__form-field-wrap textarea {\n    max-height: 15rem;\n  }\n}\n.hero-section__form-submit {\n  font-size: 2rem;\n  font-weight: 500;\n  width: 100%;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(238, 37, 97, 0.986);\n}\n.hero-section .invalid-field,\n.hero-section .invalid-email {\n  position: relative;\n}\n.hero-section .invalid-field input,\n.hero-section .invalid-field textarea,\n.hero-section .invalid-email input,\n.hero-section .invalid-email textarea {\n  box-shadow: 0 0 1.5rem red;\n}\n.hero-section .invalid-field::after {\n  content: \"Данное поле обязательно к заполнению\" !important;\n  position: absolute;\n  bottom: -2.2rem;\n  left: 0;\n  width: 100%;\n  height: 2rem;\n  color: red;\n}\n.hero-section .invalid-email::after {\n  content: \"Некорректный email\";\n  position: absolute;\n  bottom: -2.2rem;\n  left: 0;\n  width: 100%;\n  height: 2rem;\n  color: red;\n}\n\n.second-section {\n  min-height: 30rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.second-section__popup-btn {\n  font-size: 2rem;\n  font-weight: 500;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(89, 130, 245, 0.986);\n}\n\n.popup {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  visibility: hidden;\n  transform: translate(-50%, -50%);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.4);\n  transition: all 0.3s ease 0s;\n}\n.popup.active {\n  opacity: 1;\n  visibility: visible;\n}\n.popup.active .popup__wrapper {\n  position: relative;\n  transform: rotateZ(0deg);\n}\n.popup__wrapper {\n  position: relative;\n  transform: rotateZ(90deg);\n  transition: transform 0.3s ease 0s;\n}\n.popup__close-btn {\n  position: absolute;\n  top: 2rem;\n  right: 1.5rem;\n  cursor: pointer;\n}\n.popup__content {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  gap: 4rem;\n  width: 40rem;\n  height: 40rem;\n  padding: 2rem;\n  background-color: white;\n  border-radius: 2.2rem;\n  font-size: 16px;\n  font-weight: 500;\n}\n.popup__result-message {\n  font-size: 3rem;\n  transform: translateY(-100%);\n  text-transform: uppercase;\n}\n.popup__result-text {\n  font-size: 2rem;\n}\n.popup .popup-info__content-title {\n  font-size: 4rem;\n  transform: translateY(-100%);\n}\n\n.freeze {\n  overflow: hidden;\n}\n\n.padding {\n  padding-right: 17px;\n}\n\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\n  font-weight: 500;\n}\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\n  font-weight: 400;\n}\n/* Colors */\n/* Transitions */\n/* Breakpoints */","/*Обнуление*/\r\n* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  -moz-box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n:focus,\r\n:active {\r\n  outline: none;\r\n}\r\na:focus,\r\na:active {\r\n  outline: none;\r\n}\r\n\r\nnav,\r\nfooter,\r\nheader,\r\naside {\r\n  display: block;\r\n}\r\n\r\nhtml,\r\nbody {\r\n  height: 100%;\r\n  width: 100%;\r\n  font-size: 10px;\r\n  line-height: 1;\r\n  -ms-text-size-adjust: 100%;\r\n  -moz-text-size-adjust: 100%;\r\n  -webkit-text-size-adjust: 100%;\r\n}\r\ninput,\r\nbutton,\r\ntextarea {\r\n  font-family: inherit;\r\n}\r\n\r\ninput::-ms-clear {\r\n  display: none;\r\n}\r\nbutton {\r\n  cursor: pointer;\r\n}\r\nbutton::-moz-focus-inner {\r\n  padding: 0;\r\n  border: 0;\r\n}\r\na,\r\na:visited {\r\n  text-decoration: none;\r\n}\r\na:hover {\r\n  text-decoration: none;\r\n}\r\nul li {\r\n  list-style: none;\r\n}\r\nimg {\r\n  vertical-align: top;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n  font-size: inherit;\r\n  font-weight: 400;\r\n}\r\n/*--------------------*/\r\n","/* Colors */\r\n$white: #ffffff;\r\n$black: #040504;\r\n$red: rgba(238, 37, 97, 0.986);\r\n$blue: rgba(89, 130, 245, 0.986);\r\n\r\n/* Transitions */\r\n$transition-duration-default: 0.3s;\r\n$transition-delay-default: 0.3s;\r\n$transition-default: 0.3s linear;\r\n\r\n$delay-animation-page: 0.3s;\r\n\r\n/* Breakpoints */\r\n$breakpoint-xxl: 1920px;\r\n$breakpoint-xl: 1680px;\r\n$breakpoint-lg: 1279px;\r\n$breakpoint-md: 768px;\r\n$breakpoint-sm: 576px;\r\n","@import \"variables.scss\";\r\n\r\nbody {\r\n  background: $red;\r\n  font-family: \"Montserrat\";\r\n}\r\n\r\n.hero-section {\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  padding-left: 2rem;\r\n  padding-right: 2rem;\r\n\r\n  &__form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding: 5rem 4rem 4rem 4rem;\r\n    gap: 2.5rem;\r\n    max-width: 60rem;\r\n    min-width: 32rem;\r\n    min-height: 45rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n\r\n    @media (max-width: $breakpoint-sm) {\r\n      padding: 5rem 2rem 4rem 2rem;\r\n    }\r\n\r\n    &-title {\r\n      font-weight: 500;\r\n      font-size: 4rem;\r\n\r\n      @media (max-width: $breakpoint-sm) {\r\n        font-size: 2.8rem;\r\n      }\r\n    }\r\n\r\n    &-field-wrap {\r\n      input,\r\n      textarea {\r\n        width: 100%;\r\n        padding: 2rem 1rem;\r\n        background-color: rgb(226, 226, 250);\r\n        border-radius: 2.2rem;\r\n        font-size: 1.5rem;\r\n        box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\r\n\r\n        @media (max-width: $breakpoint-sm) {\r\n          padding: 1.2rem 1rem;\r\n        }\r\n      }\r\n\r\n      textarea {\r\n        resize: none;\r\n\r\n        @media (max-height: 735px) {\r\n          max-height: 15rem;\r\n        }\r\n      }\r\n    }\r\n\r\n    &-submit {\r\n      font-size: 2rem;\r\n      font-weight: 500;\r\n      width: 100%;\r\n      padding: 2rem 1rem;\r\n      border-radius: 2.2rem;\r\n      background-color: $red;\r\n    }\r\n  }\r\n\r\n  .invalid-field,\r\n  .invalid-email {\r\n    position: relative;\r\n    input,\r\n    textarea {\r\n      box-shadow: 0 0 1.5rem red;\r\n    }\r\n  }\r\n\r\n  .invalid-field {\r\n    &::after {\r\n      content: \"Данное поле обязательно к заполнению\" !important;\r\n      position: absolute;\r\n      bottom: -2.2rem;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 2rem;\r\n      color: red;\r\n    }\r\n  }\r\n\r\n  .invalid-email {\r\n    &::after {\r\n      content: \"Некорректный email\";\r\n      position: absolute;\r\n      bottom: -2.2rem;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 2rem;\r\n      color: red;\r\n    }\r\n  }\r\n}\r\n\r\n.second-section {\r\n  min-height: 30rem;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n\r\n  &__popup-btn {\r\n    font-size: 2rem;\r\n    font-weight: 500;\r\n    padding: 2rem 1rem;\r\n    border-radius: 2.2rem;\r\n    background-color: $blue;\r\n  }\r\n}\r\n\r\n.popup {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: fixed;\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 0;\r\n  visibility: hidden;\r\n  transform: translate(-50%, -50%);\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  background-color: rgba($color: #000000, $alpha: 0.4);\r\n  transition: all $transition-duration-default ease 0s;\r\n\r\n  &.active {\r\n    opacity: 1;\r\n    visibility: visible;\r\n    .popup__wrapper {\r\n      position: relative;\r\n      transform: rotateZ(0deg);\r\n    }\r\n  }\r\n\r\n  &__wrapper {\r\n    position: relative;\r\n    transform: rotateZ(90deg);\r\n    transition: transform $transition-duration-default ease 0s;\r\n  }\r\n\r\n  &__close-btn {\r\n    position: absolute;\r\n    top: 2rem;\r\n    right: 1.5rem;\r\n    cursor: pointer;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    gap: 4rem;\r\n    width: 40rem;\r\n    height: 40rem;\r\n    padding: 2rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n    font-size: 16px;\r\n    font-weight: 500;\r\n  }\r\n\r\n  &__result-message {\r\n    font-size: 3rem;\r\n    transform: translateY(-100%);\r\n    text-transform: uppercase;\r\n  }\r\n\r\n  &__result-text {\r\n    font-size: 2rem;\r\n  }\r\n\r\n  .popup-info__content {\r\n    &-title {\r\n      font-size: 4rem;\r\n      transform: translateY(-100%);\r\n    }\r\n  }\r\n}\r\n\r\n.freeze {\r\n  overflow: hidden;\r\n}\r\n\r\n.padding {\r\n  padding-right: 17px;\r\n}\r\n","@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\r\n  font-weight: 500;\r\n}\r\n\r\n@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\r\n  font-weight: 400;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10527,6 +10620,42 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+  if (!url) {
+    return url;
+  }
+  url = String(url.__esModule ? url.default : url);
+
+  // If url is already wrapped in quotes, remove them
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+  if (options.hash) {
+    url += options.hash;
+  }
+
+  // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+  return url;
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
 /*!************************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
@@ -10564,10 +10693,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/html-loader/dist/runtime/getUrl.js */ "./node_modules/html-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./assets/cross.svg */ "./src/assets/cross.svg"), __webpack_require__.b);
 // Module
-var code = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ITPROFIT</title>\r\n  </head>\r\n  <body>\r\n    <main>\r\n      <section class=\"hero-section\">\r\n        <form class=\"hero-section__form\">\r\n          <div class=\"hero-section__form-title\">\r\n            Fill out the fields below to send us a message\r\n          </div>\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"text\" name=\"name\" placeholder=\"NAME\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"email\" name=\"email\" placeholder=\"EMAIL\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input\r\n              class=\"tel\"\r\n              type=\"tel\"\r\n              id=\"tel\"\r\n              name=\"tel\"\r\n              placeholder=\"+375\"\r\n            />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <textarea\r\n              name=\"msg\"\r\n              id=\"text-area-msg\"\r\n              cols=\"30\"\r\n              rows=\"10\"\r\n              placeholder=\"MESSAGE\"\r\n            ></textarea>\r\n          </div>\r\n\r\n          <button class=\"hero-section__form-submit\" type=\"submit\">\r\n            Submit\r\n          </button>\r\n        </form>\r\n        <!-- <button class=\"test\">Open popup</button> -->\r\n      </section>\r\n      <section>\r\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam\r\n        debitis, sit ullam eligendi odit assumenda illum deleniti dolores\r\n        aspernatur ipsa porro, ab ut eaque perferendis iusto dolor tenetur.\r\n        Temporibus, saepe? Veritatis maxime ad atque corrupti, officiis eligendi\r\n        amet officia blanditiis aliquam doloremque ullam deserunt odit dolorum\r\n        ratione repudiandae ut error unde vel cupiditate? Voluptatum ex vel\r\n        veritatis! Architecto sunt fugiat temporibus voluptates? Quam tenetur\r\n        nihil debitis aliquam nam ad, amet ipsa ratione quae ducimus totam optio\r\n        sint eum hic quibusdam recusandae id dolorum ab tempore cum. Pariatur\r\n        consectetur a corrupti aspernatur voluptas quis, laudantium accusantium?\r\n        Libero nihil, ex deserunt ad suscipit obcaecati ducimus deleniti soluta,\r\n        nobis quaerat rem nesciunt facere voluptatem fuga doloribus id repellat\r\n        officiis delectus quibusdam? Maxime sint cum obcaecati accusamus\r\n        dignissimos, hic sequi illum exercitationem accusantium quibusdam!\r\n        Voluptatem ab sapiente delectus dolor, ea accusantium earum ipsa? Eius\r\n        sapiente laborum voluptates atque quam quos nam cum maiores natus eaque\r\n        quisquam, architecto repellendus possimus reiciendis soluta itaque amet\r\n        totam recusandae unde provident! Accusamus blanditiis animi, ut\r\n        reprehenderit dignissimos amet ducimus minus magni quos incidunt\r\n        asperiores commodi officiis quia rem dolor. Sit repudiandae aut delectus\r\n        ratione veritatis non deserunt nihil mollitia. Ad molestiae aspernatur\r\n        atque, aliquam incidunt ullam explicabo repellendus inventore? Ab minima\r\n        ut unde nostrum? Veritatis impedit consequatur ratione vero facilis ea\r\n        harum officia, minima ullam excepturi dolorem eaque, soluta commodi vel\r\n        labore. Adipisci quam quo, ullam eos quod ut, maiores nesciunt alias\r\n        magni voluptatem aut praesentium temporibus vel illum. Officiis illum\r\n        sit tenetur. Earum voluptatibus eum, iusto nostrum impedit dolores nobis\r\n        dolorem quia sequi! Ab, omnis laborum hic nam delectus saepe commodi\r\n        error accusantium fugiat in laudantium maxime sunt eaque tenetur sed\r\n        temporibus cumque vel autem voluptate pariatur! At quasi nobis eligendi\r\n        officiis molestias nesciunt quos ad provident fugit repudiandae aut quod\r\n        dolore nisi aliquam perspiciatis a, deserunt sapiente! Omnis, odit rerum\r\n        non veniam a, saepe officia porro quasi, similique quam architecto culpa\r\n        id asperiores incidunt atque quod eveniet ex fugit perferendis quos\r\n        delectus dignissimos voluptates perspiciatis dolores? Placeat non\r\n        cupiditate officia illum rerum quod sint, rem necessitatibus, cum autem,\r\n        provident harum alias reiciendis excepturi. Molestias nesciunt\r\n        doloremque necessitatibus placeat, ex eaque corporis repellat rem vitae\r\n        libero voluptas quam sapiente tempora distinctio accusamus mollitia\r\n        consectetur iusto inventore, numquam harum ipsam porro labore? Ad quidem\r\n        qui reiciendis corrupti impedit ut debitis labore, tenetur non pariatur\r\n        dolorem nihil excepturi magnam eum porro possimus distinctio officia\r\n        odio facere nisi, fuga repellendus odit amet. Neque earum eligendi\r\n        officiis impedit quia nemo explicabo quibusdam nesciunt praesentium\r\n        fugit soluta natus voluptatum repellendus sapiente, commodi laudantium\r\n        illo magni architecto reiciendis quis. Accusamus velit quaerat pariatur\r\n        ducimus sed. Hic incidunt fugiat expedita. Earum consequatur debitis\r\n        deleniti, dolore culpa dolores? Facere aliquam deleniti impedit quas\r\n        eaque repellendus blanditiis magnam natus, maxime quis placeat, aperiam,\r\n        vel nobis corporis voluptate accusamus expedita! Exercitationem enim\r\n        laborum distinctio voluptas dolorem impedit ut perspiciatis, architecto\r\n        dolorum cupiditate corrupti aperiam accusamus cum rerum! Eligendi sed\r\n        aliquid veritatis dolores, mollitia tempore facere officia quisquam\r\n        explicabo perferendis recusandae? Rerum recusandae amet velit? Minima,\r\n        dolorum? Accusamus error autem pariatur voluptatum soluta nulla laborum\r\n        cum laboriosam. Voluptas quo neque tempora, mollitia soluta quia fuga\r\n        amet delectus aliquam asperiores molestiae a exercitationem tempore\r\n        perspiciatis id nihil sunt? Nisi perferendis consequuntur tenetur\r\n        laboriosam distinctio laborum aut architecto at quisquam iusto, beatae\r\n        minima reprehenderit rerum aperiam. Provident dolor repellat suscipit\r\n        nemo. Cumque aperiam quis, quo repudiandae quos itaque ab voluptatem\r\n        praesentium quisquam nesciunt dolore vel ea placeat quia quae architecto\r\n        labore, cum id cupiditate ad, illo tempore! Asperiores alias suscipit\r\n        accusantium id debitis nulla dignissimos odit autem illum, assumenda\r\n        cupiditate dolorem temporibus maiores non quis consequatur doloribus\r\n        iure eum repellendus vero officiis. Voluptatibus expedita quam\r\n        voluptates, illum eius explicabo quidem iusto aspernatur iste, eaque\r\n        nobis eligendi amet ad ratione? Vel tempore corrupti incidunt labore\r\n        sapiente, ipsam modi hic id deleniti veniam aspernatur facere impedit\r\n        recusandae qui, eos debitis eius officia voluptates placeat ab ea, ipsa\r\n        cupiditate tenetur. Doloribus enim eum saepe aliquid, nobis sapiente?\r\n        Non accusamus deleniti ratione et, dolorum sunt fuga numquam quam! Vel\r\n        corporis sunt obcaecati eaque unde maiores? Nostrum repudiandae\r\n        voluptatum, architecto cupiditate laboriosam culpa reiciendis esse\r\n        necessitatibus asperiores iste vel eligendi rerum, facilis,\r\n        reprehenderit possimus deleniti dolore. Fuga quia, adipisci illum\r\n        molestiae deleniti, sapiente ad corporis porro ipsum quis dignissimos\r\n        enim nihil, deserunt nulla? Iure qui recusandae dolorem atque accusamus,\r\n        dignissimos harum veniam quod impedit ducimus optio similique unde\r\n        consequuntur eveniet fuga, quaerat culpa facilis voluptatibus beatae rem\r\n        officia. Repudiandae expedita nulla facilis amet ipsa. Harum sint\r\n        incidunt iusto fuga omnis repellendus eos ab et suscipit. Modi\r\n        perspiciatis excepturi necessitatibus, libero accusantium facere maiores\r\n        voluptate non corporis, autem sapiente? Nesciunt rem vel quibusdam\r\n        fugiat excepturi odit quo at modi? Facere optio architecto eius est esse\r\n        in iure voluptatibus aperiam hic? Quasi consequuntur quia ullam id,\r\n        tempora quis dolores perspiciatis explicabo saepe, eum unde! Esse ea\r\n        perferendis at aliquid fugiat veniam possimus magni quia iste velit\r\n        accusamus voluptates tenetur voluptatibus nesciunt eligendi natus non\r\n        hic sequi, reiciendis, corporis ab? Inventore doloribus voluptatum alias\r\n        vero neque illo laboriosam eos in, blanditiis, a nihil molestias ducimus\r\n        maxime quasi totam. Illum delectus possimus dolorem earum! Maxime\r\n        facilis iusto quas sapiente ipsam, dolorem impedit saepe, est\r\n        asperiores, enim corrupti. Error molestiae deleniti quidem a quibusdam?\r\n        Ipsa facilis, esse, sunt aspernatur quae hic laudantium quis deserunt\r\n        commodi dignissimos modi alias debitis? Voluptate deleniti doloribus\r\n        dignissimos cupiditate quam est reprehenderit earum veniam! Ex quas,\r\n        distinctio consectetur enim, quod harum, et maiores labore unde dolores\r\n        assumenda voluptate recusandae! Quidem explicabo aspernatur non quae\r\n        quos quisquam. Expedita placeat sapiente architecto nisi cupiditate\r\n        debitis harum culpa rerum atque iure fugiat earum, voluptatem unde,\r\n        soluta veritatis modi voluptatibus aliquam exercitationem dolores. Magni\r\n        placeat sint aperiam adipisci non ad deserunt dolores, repudiandae\r\n        dignissimos porro. In molestiae laborum porro atque natus mollitia,\r\n        magnam iure doloribus ratione sint quos unde consectetur. Ipsum delectus\r\n        a totam, non ab consequuntur labore, fuga nostrum eius beatae ullam\r\n        velit magni voluptas optio facilis corporis repellendus accusamus harum\r\n        facere reiciendis obcaecati dolorem. Quos, sint. Eius, voluptatibus\r\n        voluptate impedit labore debitis quis aliquid aspernatur dolorum\r\n        voluptas.\r\n      </section>\r\n    </main>\r\n    <div class=\"popup-message popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <span class=\"popup-info__close-btn popup__close-btn\">X</span>\r\n        <div class=\"popup-message__content popup__content\">\r\n          <div class=\"popup__result-message\"></div>\r\n          <div class=\"popup__result-text\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"popup-info popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <span class=\"popup-info__close-btn popup__close-btn\">X</span>\r\n        <div class=\"popup-info__content popup__content\">\r\n          <div class=\"popup__result-message\"></div>\r\n          <div class=\"popup__result-text\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
+var ___HTML_LOADER_REPLACEMENT_0___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_0___);
+var code = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ITPROFIT</title>\r\n  </head>\r\n  <body>\r\n    <main>\r\n      <section class=\"hero-section\">\r\n        <form class=\"hero-section__form\">\r\n          <div class=\"hero-section__form-title\">\r\n            Fill out the fields below to send us a message\r\n          </div>\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"text\" name=\"name\" placeholder=\"NAME\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"email\" name=\"email\" placeholder=\"EMAIL\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input\r\n              class=\"tel\"\r\n              type=\"tel\"\r\n              id=\"tel\"\r\n              name=\"tel\"\r\n              placeholder=\"+375\"\r\n            />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <textarea\r\n              name=\"msg\"\r\n              id=\"text-area-msg\"\r\n              cols=\"30\"\r\n              rows=\"10\"\r\n              placeholder=\"MESSAGE\"\r\n            ></textarea>\r\n          </div>\r\n\r\n          <button class=\"hero-section__form-submit\" type=\"submit\">\r\n            Submit\r\n          </button>\r\n        </form>\r\n      </section>\r\n      <section class=\"second-section\">\r\n        <button class=\"second-section__popup-btn\">Open popup</button>\r\n      </section>\r\n    </main>\r\n    <div class=\"popup-message popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <img\r\n          src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\r\n          class=\"popup-info__close-btn popup__close-btn\"\r\n        />\r\n        <div class=\"popup-message__content popup__content\">\r\n          <div class=\"popup__result-message\"></div>\r\n          <div class=\"popup__result-text\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"popup-info popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <span class=\"popup-info__close-btn popup__close-btn\">X</span>\r\n        <div class=\"popup-info__content popup__content\">\r\n          <div class=\"popup-info__content-title\">Hello</div>\r\n          <div>Thanks for clicking on me! I'm a modal window!</div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
+
+/***/ }),
+
+/***/ "./node_modules/html-loader/dist/runtime/getUrl.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/html-loader/dist/runtime/getUrl.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  }
+
+  if (!url) {
+    return url;
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = String(url.__esModule ? url.default : url);
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  }
+
+  if (options.maybeNeedQuotes && /[\t\n\f\r "'=<>`]/.test(url)) {
+    return "\"".concat(url, "\"");
+  }
+
+  return url;
+};
 
 /***/ }),
 
@@ -10896,6 +11067,39 @@ function styleTagTransform(css, styleElement) {
   }
 }
 module.exports = styleTagTransform;
+
+/***/ }),
+
+/***/ "./src/assets/cross.svg":
+/*!******************************!*\
+  !*** ./src/assets/cross.svg ***!
+  \******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "assets/cross.svg";
+
+/***/ }),
+
+/***/ "./src/fonts/Montserrat-Medium.woff":
+/*!******************************************!*\
+  !*** ./src/fonts/Montserrat-Medium.woff ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "fonts/Montserrat-Medium.woff";
+
+/***/ }),
+
+/***/ "./src/fonts/Montserrat-Regular.woff":
+/*!*******************************************!*\
+  !*** ./src/fonts/Montserrat-Regular.woff ***!
+  \*******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+module.exports = __webpack_require__.p + "fonts/Montserrat-Regular.woff";
 
 /***/ }),
 
@@ -14899,6 +15103,9 @@ _core_holder_js__WEBPACK_IMPORTED_MODULE_1__["default"].MaskedRegExp = MaskedReg
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -14924,6 +15131,18 @@ _core_holder_js__WEBPACK_IMPORTED_MODULE_1__["default"].MaskedRegExp = MaskedReg
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -14938,6 +15157,55 @@ _core_holder_js__WEBPACK_IMPORTED_MODULE_1__["default"].MaskedRegExp = MaskedReg
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
@@ -14988,13 +15256,13 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener("DOMContentLoaded", function () {
   var popup = new _js_popup__WEBPACK_IMPORTED_MODULE_4__["default"](".popup-info");
   var messagePopup = new _js_popup__WEBPACK_IMPORTED_MODULE_4__["default"](".popup-message");
-  var btn = document.querySelector(".test");
+  var btn = document.querySelector(".second-section__popup-btn");
   new _js_form__WEBPACK_IMPORTED_MODULE_3__["default"](".hero-section__form", messagePopup);
   (0,_js_mask_js__WEBPACK_IMPORTED_MODULE_2__["default"])("tel");
-  // btn.addEventListener("click", popup.show.bind(popup));
+  btn.addEventListener("click", popup.show.bind(popup));
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.53044bc9e5ef36755ae5.js.map
+//# sourceMappingURL=main.695b3ebb7311f6c12d51.js.map

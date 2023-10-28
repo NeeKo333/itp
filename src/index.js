@@ -7,9 +7,9 @@ import Popup from "./js/popup";
 window.addEventListener("DOMContentLoaded", () => {
   const popup = new Popup(".popup-info");
   const messagePopup = new Popup(".popup-message");
-  const btn = document.querySelector(".test");
+  const popupBtn = document.querySelector(".second-section__popup-btn");
 
   new Form(".hero-section__form", messagePopup);
   mask("tel");
-  // btn.addEventListener("click", popup.show.bind(popup));
+  popupBtn.addEventListener("click", popup.show.bind(popup));
 });

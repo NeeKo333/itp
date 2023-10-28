@@ -13,9 +13,10 @@ class Popup {
     if (!e) {
       this.popup.classList.remove("active");
     }
+
     if (
       e.target.classList.contains("popup") ||
-      e.target.classList.contains("popup__close-btn")
+      e.target.closest(".popup__close-btn")
     ) {
       this.popup.classList.remove("active");
       document.body.classList.remove("freeze");

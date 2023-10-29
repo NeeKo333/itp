@@ -13,6 +13,8 @@ body {
   align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
   &__form {
     display: flex;
@@ -33,6 +35,13 @@ body {
     &-title {
       font-weight: 500;
       font-size: 4rem;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      max-height: 3em;
 
       @media (max-width: $breakpoint-sm) {
         font-size: 2.8rem;
@@ -98,13 +107,13 @@ body {
 
   .invalid-field {
     &::after {
-      content: "Fill in the field!" !important;
+      content: "Обязательное поле!" !important;
     }
   }
 
   .invalid-email {
     &::after {
-      content: "Incorrect email!";
+      content: "Некорректный email!";
     }
   }
 }
@@ -191,12 +200,19 @@ body {
 
   &__result-text {
     font-size: 2rem;
+    text-align: center;
+    white-space: pre-line;
   }
 
   .popup-info__content {
     &-title {
+      text-align: center;
       font-size: 4rem;
       transform: translateY(-100%);
+    }
+
+    &-text {
+      text-align: center;
     }
   }
 }

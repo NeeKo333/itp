@@ -28,7 +28,7 @@ class Form {
     const parentNode = field.closest(`${this.formSelector}-field-wrap`);
     parentNode.classList.remove("invalid-field");
 
-    if (!field.value) {
+    if (!field.value.trim()) {
       parentNode.classList.add("invalid-field");
       return true;
     }
@@ -47,13 +47,9 @@ class Form {
   }
 
   isValid() {
-    let notValidFields = 0;
-
-    this.fields.forEach((field) => {
-      if (this.isFieldEmpty(field)) {
-        notValidFields++;
-      }
-    });
+    const notValidFields = [...this.fields].filter((field) =>
+      this.isFieldEmpty(field)
+    ).length;
 
     const emailField = this.form.querySelector("input[type=email]");
     if (!this.isEmailValid(emailField)) {
@@ -69,21 +65,40 @@ class Form {
     this.fields.forEach((field) => (field.value = ""));
   }
 
+  buildErrorMessage(fields) {
+    let errorText = "Проверьте корректность следующих полей:\n\n";
+    for (let [key, value] of Object.entries(fields)) {
+      errorText += value + "\n\n";
+    }
+    return errorText;
+  }
+
   async submitForm(e) {
     e.preventDefault();
     if (!this.isValid()) return;
 
-    const result = await Api.registration();
-    if (result) {
+    const body = {
+      name: this.form.name.value,
+      email: this.form.email.value,
+      tel: this.form.tel.value,
+      msg: this.form.msg.value,
+    };
+
+    const { status, data: result } = await Api.registration(body);
+
+    if (status) {
       this.clearFields();
 
-      this.messagePopup &&
+      if (this.messagePopup) {
         this.messagePopup
           .setMessage(result.status, result.message, "SUCCESS")
           .show();
+      }
     } else {
-      this.messagePopup &&
-        this.messagePopup.setMessage("Error", "Error", "ERROR").show();
+      if (this.messagePopup) {
+        const errorText = this.buildErrorMessage(result.fields);
+        this.messagePopup.setMessage(result.status, errorText, "ERROR").show();
+      }
     }
   }
 }

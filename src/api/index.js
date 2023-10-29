@@ -3,20 +3,20 @@ class Api {
     this.baseUrl = "http://localhost:9090";
   }
 
-  async registration() {
+  async registration(body) {
     try {
       const response = await fetch(`${this.baseUrl}/api/registration`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
+        body: JSON.stringify(body),
       });
-      if (response.ok) {
-        const data = await response.json();
-        return data;
-      }
+
+      const data = await response.json();
+      return response.ok ? { status: true, data } : { status: false, data };
     } catch (error) {
-      console.log(error);
+      console.log("API error:", error);
     }
   }
 }

@@ -10,32 +10,49 @@ app.use(
   })
 );
 
+app.use(express.json());
+
 app.get("/api/ping", (req, res) => {
   const response = {
-    status: "succsess",
+    status: "success",
     message: "Server is ready!",
   };
-  res.send(JSON.stringify(response));
+  res.json(response);
 });
 
-app.post("/api/registration", (req, res) => {
-  const random = Math.random();
+app.post("/api/registration", async (req, res) => {
+  try {
+    const random = Math.random();
 
-  if (random > 0.5) {
-    const response = {
-      status: "success",
-      message: "Server response!",
-    };
-    res.status(200).send(JSON.stringify(response));
-  } else {
-    const errorResponse = {
-      status: "error",
-      message: "Server error!",
-    };
-    res.status(500).send(JSON.stringify(errorResponse));
+    if (random > 0.5) {
+      const response = {
+        status: "success",
+        message: "Ваша заявка успешно отправлена!",
+      };
+      res.status(200).json(response);
+    } else {
+      const errorResponse = {
+        status: "error",
+        fields: {
+          inputName: req.body.name,
+          inputEmail: req.body.email,
+          inputTel: req.body.tel,
+          inputMsg: req.body.msg,
+        },
+      };
+      res.status(400).json(errorResponse);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
+
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is listening on port ${port}`);
 });

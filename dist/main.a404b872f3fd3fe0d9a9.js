@@ -839,7 +839,7 @@ var Api = /*#__PURE__*/function () {
   _createClass(Api, [{
     key: "registration",
     value: function () {
-      var _registration = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var _registration = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body) {
         var response, data;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
@@ -850,33 +850,33 @@ var Api = /*#__PURE__*/function () {
                 method: "POST",
                 headers: {
                   "Content-type": "application/json"
-                }
+                },
+                body: JSON.stringify(body)
               });
             case 3:
               response = _context.sent;
-              if (!response.ok) {
-                _context.next = 9;
-                break;
-              }
-              _context.next = 7;
+              _context.next = 6;
               return response.json();
-            case 7:
+            case 6:
               data = _context.sent;
-              return _context.abrupt("return", data);
-            case 9:
-              _context.next = 14;
-              break;
-            case 11:
-              _context.prev = 11;
+              return _context.abrupt("return", response.ok ? {
+                status: true,
+                data: data
+              } : {
+                status: false,
+                data: data
+              });
+            case 10:
+              _context.prev = 10;
               _context.t0 = _context["catch"](0);
-              console.log(_context.t0);
-            case 14:
+              console.log("API error:", _context.t0);
+            case 13:
             case "end":
               return _context.stop();
           }
-        }, _callee, this, [[0, 11]]);
+        }, _callee, this, [[0, 10]]);
       }));
-      function registration() {
+      function registration(_x) {
         return _registration.apply(this, arguments);
       }
       return registration;
@@ -905,6 +905,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -942,7 +952,7 @@ var Form = /*#__PURE__*/function () {
     value: function isFieldEmpty(field) {
       var parentNode = field.closest("".concat(this.formSelector, "-field-wrap"));
       parentNode.classList.remove("invalid-field");
-      if (!field.value) {
+      if (!field.value.trim()) {
         parentNode.classList.add("invalid-field");
         return true;
       }
@@ -963,12 +973,9 @@ var Form = /*#__PURE__*/function () {
     key: "isValid",
     value: function isValid() {
       var _this2 = this;
-      var notValidFields = 0;
-      this.fields.forEach(function (field) {
-        if (_this2.isFieldEmpty(field)) {
-          notValidFields++;
-        }
-      });
+      var notValidFields = _toConsumableArray(this.fields).filter(function (field) {
+        return _this2.isFieldEmpty(field);
+      }).length;
       var emailField = this.form.querySelector("input[type=email]");
       if (!this.isEmailValid(emailField)) {
         return false;
@@ -984,10 +991,22 @@ var Form = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "buildErrorMessage",
+    value: function buildErrorMessage(fields) {
+      var errorText = "Проверьте корректность следующих полей:\n\n";
+      for (var _i = 0, _Object$entries = Object.entries(fields); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          key = _Object$entries$_i[0],
+          value = _Object$entries$_i[1];
+        errorText += value + "\n\n";
+      }
+      return errorText;
+    }
+  }, {
     key: "submitForm",
     value: function () {
       var _submitForm = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
-        var result;
+        var body, _yield$Api$registrati, status, result, errorText;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -998,17 +1017,30 @@ var Form = /*#__PURE__*/function () {
               }
               return _context.abrupt("return");
             case 3:
-              _context.next = 5;
-              return _api_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].registration();
-            case 5:
-              result = _context.sent;
-              if (result) {
+              body = {
+                name: this.form.name.value,
+                email: this.form.email.value,
+                tel: this.form.tel.value,
+                msg: this.form.msg.value
+              };
+              _context.next = 6;
+              return _api_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].registration(body);
+            case 6:
+              _yield$Api$registrati = _context.sent;
+              status = _yield$Api$registrati.status;
+              result = _yield$Api$registrati.data;
+              if (status) {
                 this.clearFields();
-                this.messagePopup && this.messagePopup.setMessage(result.status, result.message, "SUCCESS").show();
+                if (this.messagePopup) {
+                  this.messagePopup.setMessage(result.status, result.message, "SUCCESS").show();
+                }
               } else {
-                this.messagePopup && this.messagePopup.setMessage("Error", "Error", "ERROR").show();
+                if (this.messagePopup) {
+                  errorText = this.buildErrorMessage(result.fields);
+                  this.messagePopup.setMessage(result.status, errorText, "ERROR").show();
+                }
               }
-            case 7:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -1102,7 +1134,7 @@ var Popup = /*#__PURE__*/function () {
       if (!e) {
         this.popup.classList.remove("active");
       }
-      if (e.target.classList.contains("popup") || e.target.classList.contains("popup__close-btn")) {
+      if (e.target.classList.contains("popup") || e.target.closest(".popup__close-btn")) {
         this.popup.classList.remove("active");
         document.body.classList.remove("freeze");
         document.documentElement.classList.remove("padding");
@@ -10316,6 +10348,18 @@ h6 {
 }
 
 /*--------------------*/
+.freeze {
+  overflow: hidden;
+}
+
+.padding {
+  padding-right: 17px;
+}
+
+.hidden_svg {
+  display: none;
+}
+
 /* Colors */
 /* Transitions */
 /* Breakpoints */
@@ -10332,6 +10376,8 @@ body {
   align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .hero-section__form {
   display: flex;
@@ -10353,6 +10399,12 @@ body {
 .hero-section__form-title {
   font-weight: 500;
   font-size: 4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 3em;
 }
 @media (max-width: 576px) {
   .hero-section__form-title {
@@ -10400,25 +10452,27 @@ body {
 .hero-section .invalid-email textarea {
   box-shadow: 0 0 1.5rem red;
 }
-.hero-section .invalid-field::after {
-  content: "Данное поле обязательно к заполнению" !important;
-}
-.hero-section .invalid-field::after {
+.hero-section .invalid-field::after,
+.hero-section .invalid-email::after {
   position: absolute;
-  bottom: -2.2rem;
-  left: 0;
+  bottom: -2.5rem;
+  left: 0.5rem;
   width: 100%;
   height: 2rem;
   color: red;
+  font-size: 1.2rem;
+}
+@media (max-width: 576px) {
+  .hero-section .invalid-field::after,
+  .hero-section .invalid-email::after {
+    font-size: 1rem;
+  }
+}
+.hero-section .invalid-field::after {
+  content: "Обязательное поле!" !important;
 }
 .hero-section .invalid-email::after {
-  content: "Некорректный email";
-  position: absolute;
-  bottom: -2.2rem;
-  left: 0;
-  width: 100%;
-  height: 2rem;
-  color: red;
+  content: "Некорректный email!";
 }
 
 .second-section {
@@ -10457,18 +10511,22 @@ body {
   visibility: visible;
 }
 .popup.active .popup__wrapper {
-  position: relative;
   transform: rotateZ(0deg);
 }
 .popup__wrapper {
   position: relative;
+  width: 90%;
+  max-width: 40rem;
   transform: rotateZ(90deg);
   transition: transform 0.3s ease 0s;
 }
 .popup__close-btn {
   position: absolute;
   top: 2rem;
-  right: 1.5rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  fill: rgba(238, 37, 97, 0.986);
   cursor: pointer;
 }
 .popup__content {
@@ -10477,7 +10535,7 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 4rem;
-  width: 40rem;
+  width: 100%;
   height: 40rem;
   padding: 2rem;
   background-color: white;
@@ -10492,18 +10550,16 @@ body {
 }
 .popup__result-text {
   font-size: 2rem;
+  text-align: center;
+  white-space: pre-line;
 }
 .popup .popup-info__content-title {
+  text-align: center;
   font-size: 4rem;
   transform: translateY(-100%);
 }
-
-.freeze {
-  overflow: hidden;
-}
-
-.padding {
-  padding-right: 17px;
+.popup .popup-info__content-text {
+  text-align: center;
 }
 
 @font-face {
@@ -10518,7 +10574,7 @@ body {
 }
 /* Colors */
 /* Transitions */
-/* Breakpoints */`, "",{"version":3,"sources":["webpack://./src/index.scss","webpack://./src/scss/_normalize.scss","webpack://./src/scss/_variables.scss","webpack://./src/scss/_main.scss","webpack://./src/scss/_fonts.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACAhB,YAAA;AACA;EACE,UAAA;EACA,SAAA;EACA,SAAA;ADEF;;ACAA;;;EAKE,sBAAA;ADGF;;ACDA;;EAEE,aAAA;ADIF;;ACFA;;EAEE,aAAA;ADKF;;ACFA;;;;EAIE,cAAA;ADKF;;ACFA;;EAEE,YAAA;EACA,WAAA;EACA,eAAA;EACA,cAAA;EACA,0BAAA;EACA,2BAAA;EACA,8BAAA;ADKF;;ACHA;;;EAGE,oBAAA;ADMF;;ACHA;EACE,aAAA;ADMF;;ACJA;EACE,eAAA;ADOF;;ACLA;EACE,UAAA;EACA,SAAA;ADQF;;ACNA;;EAEE,6BAAA;EAAA,qBAAA;ADSF;;ACPA;EACE,6BAAA;EAAA,qBAAA;ADUF;;ACRA;EACE,gBAAA;ADWF;;ACTA;EACE,mBAAA;ADYF;;ACTA;;;;;;EAME,kBAAA;EACA,gBAAA;ADYF;;ACVA,uBAAA;AC9EA,WAAA;AAMA,gBAAA;AAOA,gBAAA;ACXA;EACE,oCAAA;EACA,yBAAA;AH6FF;;AG1FA;EACE,iBAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,kBAAA;EACA,mBAAA;AH6FF;AG3FE;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,4BAAA;EACA,WAAA;EACA,gBAAA;EACA,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,qBAAA;AH6FJ;AG3FI;EAZF;IAaI,4BAAA;EH8FJ;AACF;AG5FI;EACE,gBAAA;EACA,eAAA;AH8FN;AG5FM;EAJF;IAKI,iBAAA;EH+FN;AACF;AG3FM;;EAEE,WAAA;EACA,kBAAA;EACA,oCAAA;EACA,qBAAA;EACA,iBAAA;EACA,qDAAA;AH6FR;AG3FQ;EATF;;IAUI,oBAAA;EH+FR;AACF;AG5FM;EACE,YAAA;AH8FR;AG5FQ;EAHF;IAII,iBAAA;EH+FR;AACF;AG3FI;EACE,eAAA;EACA,gBAAA;EACA,WAAA;EACA,kBAAA;EACA,qBAAA;EACA,0CDpEA;AFiKN;AGzFE;;EAEE,kBAAA;AH2FJ;AG1FI;;;;EAEE,0BAAA;AH8FN;AGzFI;EACE,0DAAA;AHiGN;AGlGI;EAEE,kBAAA;EACA,eAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA;EACA,UAAA;AH2FN;AGtFI;EACE,6BAAA;EACA,kBAAA;EACA,eAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA;EACA,UAAA;AHwFN;;AGnFA;EACE,iBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;AHsFF;AGpFE;EACE,eAAA;EACA,gBAAA;EACA,kBAAA;EACA,qBAAA;EACA,2CDpHG;AF0MP;;AGlFA;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,eAAA;EACA,QAAA;EACA,SAAA;EACA,UAAA;EACA,kBAAA;EACA,gCAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;EACA,oCAAA;EACA,4BAAA;AHqFF;AGnFE;EACE,UAAA;EACA,mBAAA;AHqFJ;AGpFI;EACE,kBAAA;EACA,wBAAA;AHsFN;AGlFE;EACE,kBAAA;EACA,yBAAA;EACA,kCAAA;AHoFJ;AGjFE;EACE,kBAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;AHmFJ;AGhFE;EACE,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,SAAA;EACA,YAAA;EACA,aAAA;EACA,aAAA;EACA,uBAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;AHkFJ;AG/EE;EACE,eAAA;EACA,4BAAA;EACA,yBAAA;AHiFJ;AG9EE;EACE,eAAA;AHgFJ;AG5EI;EACE,eAAA;EACA,4BAAA;AH8EN;;AGzEA;EACE,gBAAA;AH4EF;;AGzEA;EACE,mBAAA;AH4EF;;AIrRA;EACE,yBAAA;EACA,2DAAA;EACA,gBAAA;AJwRF;AIrRA;EACE,yBAAA;EACA,2DAAA;EACA,gBAAA;AJuRF;AEhSA,WAAA;AAMA,gBAAA;AAOA,gBAAA","sourcesContent":["@charset \"UTF-8\";\n/*Обнуление*/\n* {\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n*,\n*:before,\n*:after {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\n:focus,\n:active {\n  outline: none;\n}\n\na:focus,\na:active {\n  outline: none;\n}\n\nnav,\nfooter,\nheader,\naside {\n  display: block;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n  font-size: 10px;\n  line-height: 1;\n  -ms-text-size-adjust: 100%;\n  -moz-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\n\ninput,\nbutton,\ntextarea {\n  font-family: inherit;\n}\n\ninput::-ms-clear {\n  display: none;\n}\n\nbutton {\n  cursor: pointer;\n}\n\nbutton::-moz-focus-inner {\n  padding: 0;\n  border: 0;\n}\n\na,\na:visited {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\nul li {\n  list-style: none;\n}\n\nimg {\n  vertical-align: top;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: 400;\n}\n\n/*--------------------*/\n/* Colors */\n/* Transitions */\n/* Breakpoints */\nbody {\n  background: rgba(238, 37, 97, 0.986);\n  font-family: \"Montserrat\";\n}\n\n.hero-section {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-left: 2rem;\n  padding-right: 2rem;\n}\n.hero-section__form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 5rem 4rem 4rem 4rem;\n  gap: 2.5rem;\n  max-width: 60rem;\n  min-width: 32rem;\n  min-height: 45rem;\n  background-color: white;\n  border-radius: 2.2rem;\n}\n@media (max-width: 576px) {\n  .hero-section__form {\n    padding: 5rem 2rem 4rem 2rem;\n  }\n}\n.hero-section__form-title {\n  font-weight: 500;\n  font-size: 4rem;\n}\n@media (max-width: 576px) {\n  .hero-section__form-title {\n    font-size: 2.8rem;\n  }\n}\n.hero-section__form-field-wrap input,\n.hero-section__form-field-wrap textarea {\n  width: 100%;\n  padding: 2rem 1rem;\n  background-color: rgb(226, 226, 250);\n  border-radius: 2.2rem;\n  font-size: 1.5rem;\n  box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\n}\n@media (max-width: 576px) {\n  .hero-section__form-field-wrap input,\n  .hero-section__form-field-wrap textarea {\n    padding: 1.2rem 1rem;\n  }\n}\n.hero-section__form-field-wrap textarea {\n  resize: none;\n}\n@media (max-height: 735px) {\n  .hero-section__form-field-wrap textarea {\n    max-height: 15rem;\n  }\n}\n.hero-section__form-submit {\n  font-size: 2rem;\n  font-weight: 500;\n  width: 100%;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(238, 37, 97, 0.986);\n}\n.hero-section .invalid-field,\n.hero-section .invalid-email {\n  position: relative;\n}\n.hero-section .invalid-field input,\n.hero-section .invalid-field textarea,\n.hero-section .invalid-email input,\n.hero-section .invalid-email textarea {\n  box-shadow: 0 0 1.5rem red;\n}\n.hero-section .invalid-field::after {\n  content: \"Данное поле обязательно к заполнению\" !important;\n  position: absolute;\n  bottom: -2.2rem;\n  left: 0;\n  width: 100%;\n  height: 2rem;\n  color: red;\n}\n.hero-section .invalid-email::after {\n  content: \"Некорректный email\";\n  position: absolute;\n  bottom: -2.2rem;\n  left: 0;\n  width: 100%;\n  height: 2rem;\n  color: red;\n}\n\n.second-section {\n  min-height: 30rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.second-section__popup-btn {\n  font-size: 2rem;\n  font-weight: 500;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(89, 130, 245, 0.986);\n}\n\n.popup {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  visibility: hidden;\n  transform: translate(-50%, -50%);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.4);\n  transition: all 0.3s ease 0s;\n}\n.popup.active {\n  opacity: 1;\n  visibility: visible;\n}\n.popup.active .popup__wrapper {\n  position: relative;\n  transform: rotateZ(0deg);\n}\n.popup__wrapper {\n  position: relative;\n  transform: rotateZ(90deg);\n  transition: transform 0.3s ease 0s;\n}\n.popup__close-btn {\n  position: absolute;\n  top: 2rem;\n  right: 1.5rem;\n  cursor: pointer;\n}\n.popup__content {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  gap: 4rem;\n  width: 40rem;\n  height: 40rem;\n  padding: 2rem;\n  background-color: white;\n  border-radius: 2.2rem;\n  font-size: 16px;\n  font-weight: 500;\n}\n.popup__result-message {\n  font-size: 3rem;\n  transform: translateY(-100%);\n  text-transform: uppercase;\n}\n.popup__result-text {\n  font-size: 2rem;\n}\n.popup .popup-info__content-title {\n  font-size: 4rem;\n  transform: translateY(-100%);\n}\n\n.freeze {\n  overflow: hidden;\n}\n\n.padding {\n  padding-right: 17px;\n}\n\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\n  font-weight: 500;\n}\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\n  font-weight: 400;\n}\n/* Colors */\n/* Transitions */\n/* Breakpoints */","/*Обнуление*/\r\n* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  -moz-box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n:focus,\r\n:active {\r\n  outline: none;\r\n}\r\na:focus,\r\na:active {\r\n  outline: none;\r\n}\r\n\r\nnav,\r\nfooter,\r\nheader,\r\naside {\r\n  display: block;\r\n}\r\n\r\nhtml,\r\nbody {\r\n  height: 100%;\r\n  width: 100%;\r\n  font-size: 10px;\r\n  line-height: 1;\r\n  -ms-text-size-adjust: 100%;\r\n  -moz-text-size-adjust: 100%;\r\n  -webkit-text-size-adjust: 100%;\r\n}\r\ninput,\r\nbutton,\r\ntextarea {\r\n  font-family: inherit;\r\n}\r\n\r\ninput::-ms-clear {\r\n  display: none;\r\n}\r\nbutton {\r\n  cursor: pointer;\r\n}\r\nbutton::-moz-focus-inner {\r\n  padding: 0;\r\n  border: 0;\r\n}\r\na,\r\na:visited {\r\n  text-decoration: none;\r\n}\r\na:hover {\r\n  text-decoration: none;\r\n}\r\nul li {\r\n  list-style: none;\r\n}\r\nimg {\r\n  vertical-align: top;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n  font-size: inherit;\r\n  font-weight: 400;\r\n}\r\n/*--------------------*/\r\n","/* Colors */\r\n$white: #ffffff;\r\n$black: #040504;\r\n$red: rgba(238, 37, 97, 0.986);\r\n$blue: rgba(89, 130, 245, 0.986);\r\n\r\n/* Transitions */\r\n$transition-duration-default: 0.3s;\r\n$transition-delay-default: 0.3s;\r\n$transition-default: 0.3s linear;\r\n\r\n$delay-animation-page: 0.3s;\r\n\r\n/* Breakpoints */\r\n$breakpoint-xxl: 1920px;\r\n$breakpoint-xl: 1680px;\r\n$breakpoint-lg: 1279px;\r\n$breakpoint-md: 768px;\r\n$breakpoint-sm: 576px;\r\n","@import \"variables.scss\";\r\n\r\nbody {\r\n  background: $red;\r\n  font-family: \"Montserrat\";\r\n}\r\n\r\n.hero-section {\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  padding-left: 2rem;\r\n  padding-right: 2rem;\r\n\r\n  &__form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding: 5rem 4rem 4rem 4rem;\r\n    gap: 2.5rem;\r\n    max-width: 60rem;\r\n    min-width: 32rem;\r\n    min-height: 45rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n\r\n    @media (max-width: $breakpoint-sm) {\r\n      padding: 5rem 2rem 4rem 2rem;\r\n    }\r\n\r\n    &-title {\r\n      font-weight: 500;\r\n      font-size: 4rem;\r\n\r\n      @media (max-width: $breakpoint-sm) {\r\n        font-size: 2.8rem;\r\n      }\r\n    }\r\n\r\n    &-field-wrap {\r\n      input,\r\n      textarea {\r\n        width: 100%;\r\n        padding: 2rem 1rem;\r\n        background-color: rgb(226, 226, 250);\r\n        border-radius: 2.2rem;\r\n        font-size: 1.5rem;\r\n        box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\r\n\r\n        @media (max-width: $breakpoint-sm) {\r\n          padding: 1.2rem 1rem;\r\n        }\r\n      }\r\n\r\n      textarea {\r\n        resize: none;\r\n\r\n        @media (max-height: 735px) {\r\n          max-height: 15rem;\r\n        }\r\n      }\r\n    }\r\n\r\n    &-submit {\r\n      font-size: 2rem;\r\n      font-weight: 500;\r\n      width: 100%;\r\n      padding: 2rem 1rem;\r\n      border-radius: 2.2rem;\r\n      background-color: $red;\r\n    }\r\n  }\r\n\r\n  .invalid-field,\r\n  .invalid-email {\r\n    position: relative;\r\n    input,\r\n    textarea {\r\n      box-shadow: 0 0 1.5rem red;\r\n    }\r\n  }\r\n\r\n  .invalid-field {\r\n    &::after {\r\n      content: \"Данное поле обязательно к заполнению\" !important;\r\n      position: absolute;\r\n      bottom: -2.2rem;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 2rem;\r\n      color: red;\r\n    }\r\n  }\r\n\r\n  .invalid-email {\r\n    &::after {\r\n      content: \"Некорректный email\";\r\n      position: absolute;\r\n      bottom: -2.2rem;\r\n      left: 0;\r\n      width: 100%;\r\n      height: 2rem;\r\n      color: red;\r\n    }\r\n  }\r\n}\r\n\r\n.second-section {\r\n  min-height: 30rem;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n\r\n  &__popup-btn {\r\n    font-size: 2rem;\r\n    font-weight: 500;\r\n    padding: 2rem 1rem;\r\n    border-radius: 2.2rem;\r\n    background-color: $blue;\r\n  }\r\n}\r\n\r\n.popup {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: fixed;\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 0;\r\n  visibility: hidden;\r\n  transform: translate(-50%, -50%);\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  background-color: rgba($color: #000000, $alpha: 0.4);\r\n  transition: all $transition-duration-default ease 0s;\r\n\r\n  &.active {\r\n    opacity: 1;\r\n    visibility: visible;\r\n    .popup__wrapper {\r\n      position: relative;\r\n      transform: rotateZ(0deg);\r\n    }\r\n  }\r\n\r\n  &__wrapper {\r\n    position: relative;\r\n    transform: rotateZ(90deg);\r\n    transition: transform $transition-duration-default ease 0s;\r\n  }\r\n\r\n  &__close-btn {\r\n    position: absolute;\r\n    top: 2rem;\r\n    right: 1.5rem;\r\n    cursor: pointer;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    gap: 4rem;\r\n    width: 40rem;\r\n    height: 40rem;\r\n    padding: 2rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n    font-size: 16px;\r\n    font-weight: 500;\r\n  }\r\n\r\n  &__result-message {\r\n    font-size: 3rem;\r\n    transform: translateY(-100%);\r\n    text-transform: uppercase;\r\n  }\r\n\r\n  &__result-text {\r\n    font-size: 2rem;\r\n  }\r\n\r\n  .popup-info__content {\r\n    &-title {\r\n      font-size: 4rem;\r\n      transform: translateY(-100%);\r\n    }\r\n  }\r\n}\r\n\r\n.freeze {\r\n  overflow: hidden;\r\n}\r\n\r\n.padding {\r\n  padding-right: 17px;\r\n}\r\n","@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\r\n  font-weight: 500;\r\n}\r\n\r\n@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\r\n  font-weight: 400;\r\n}\r\n"],"sourceRoot":""}]);
+/* Breakpoints */`, "",{"version":3,"sources":["webpack://./src/index.scss","webpack://./src/scss/_normalize.scss","webpack://./src/scss/_global.scss","webpack://./src/scss/_variables.scss","webpack://./src/scss/_main.scss","webpack://./src/scss/_fonts.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACAhB,YAAA;AACA;EACE,UAAA;EACA,SAAA;EACA,SAAA;ADEF;;ACAA;;;EAKE,sBAAA;ADGF;;ACDA;;EAEE,aAAA;ADIF;;ACFA;;EAEE,aAAA;ADKF;;ACFA;;;;EAIE,cAAA;ADKF;;ACFA;;EAEE,YAAA;EACA,WAAA;EACA,eAAA;EACA,cAAA;EACA,0BAAA;EACA,2BAAA;EACA,8BAAA;ADKF;;ACHA;;;EAGE,oBAAA;ADMF;;ACHA;EACE,aAAA;ADMF;;ACJA;EACE,eAAA;ADOF;;ACLA;EACE,UAAA;EACA,SAAA;ADQF;;ACNA;;EAEE,6BAAA;EAAA,qBAAA;ADSF;;ACPA;EACE,6BAAA;EAAA,qBAAA;ADUF;;ACRA;EACE,gBAAA;ADWF;;ACTA;EACE,mBAAA;ADYF;;ACTA;;;;;;EAME,kBAAA;EACA,gBAAA;ADYF;;ACVA,uBAAA;AC9EA;EACE,gBAAA;AF4FF;;AEzFA;EACE,mBAAA;AF4FF;;AEzFA;EACE,aAAA;AF4FF;;AGrGA,WAAA;AAMA,gBAAA;AAOA,gBAAA;ACXA;EACE,oCAAA;EACA,yBAAA;AJyGF;;AItGA;EACE,iBAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,kBAAA;EACA,mBAAA;EACA,iBAAA;EACA,oBAAA;AJyGF;AIvGE;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,4BAAA;EACA,WAAA;EACA,gBAAA;EACA,gBAAA;EACA,iBAAA;EACA,uBAAA;EACA,qBAAA;AJyGJ;AIvGI;EAZF;IAaI,4BAAA;EJ0GJ;AACF;AIxGI;EACE,gBAAA;EACA,eAAA;EAEA,gBAAA;EACA,uBAAA;EACA,oBAAA;EACA,qBAAA;EACA,4BAAA;EACA,eAAA;AJyGN;AIvGM;EAXF;IAYI,iBAAA;EJ0GN;AACF;AItGM;;EAEE,WAAA;EACA,kBAAA;EACA,oCAAA;EACA,qBAAA;EACA,iBAAA;EACA,qDAAA;AJwGR;AItGQ;EATF;;IAUI,oBAAA;EJ0GR;AACF;AIvGM;EACE,YAAA;AJyGR;AIvGQ;EAHF;IAII,iBAAA;EJ0GR;AACF;AItGI;EACE,eAAA;EACA,gBAAA;EACA,WAAA;EACA,kBAAA;EACA,qBAAA;EACA,0CD7EA;AHqLN;AIpGE;;EAEE,kBAAA;AJsGJ;AIrGI;;;;EAEE,0BAAA;AJyGN;AItGI;;EACE,kBAAA;EACA,eAAA;EACA,YAAA;EACA,WAAA;EACA,YAAA;EACA,UAAA;EACA,iBAAA;AJyGN;AIvGM;EATF;;IAUI,eAAA;EJ2GN;AACF;AItGI;EACE,wCAAA;AJwGN;AInGI;EACE,8BAAA;AJqGN;;AIhGA;EACE,iBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;AJmGF;AIjGE;EACE,eAAA;EACA,gBAAA;EACA,kBAAA;EACA,qBAAA;EACA,2CD/HG;AHkOP;;AI/FA;EACE,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,eAAA;EACA,QAAA;EACA,SAAA;EACA,UAAA;EACA,kBAAA;EACA,gCAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;EACA,oCAAA;EACA,4BAAA;AJkGF;AIhGE;EACE,UAAA;EACA,mBAAA;AJkGJ;AIjGI;EACE,wBAAA;AJmGN;AI/FE;EACE,kBAAA;EACA,UAAA;EACA,gBAAA;EACA,yBAAA;EACA,kCAAA;AJiGJ;AI9FE;EACE,kBAAA;EACA,SAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;EACA,8BD3KE;EC4KF,eAAA;AJgGJ;AI7FE;EACE,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,SAAA;EACA,WAAA;EAEA,aAAA;EACA,aAAA;EACA,uBAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;AJ8FJ;AI3FE;EACE,eAAA;EACA,4BAAA;EACA,yBAAA;AJ6FJ;AI1FE;EACE,eAAA;EACA,kBAAA;EACA,qBAAA;AJ4FJ;AIxFI;EACE,kBAAA;EACA,eAAA;EACA,4BAAA;AJ0FN;AIvFI;EACE,kBAAA;AJyFN;;AK/SA;EACE,yBAAA;EACA,2DAAA;EACA,gBAAA;ALkTF;AK/SA;EACE,yBAAA;EACA,2DAAA;EACA,gBAAA;ALiTF;AG1TA,WAAA;AAMA,gBAAA;AAOA,gBAAA","sourcesContent":["@charset \"UTF-8\";\n/*Обнуление*/\n* {\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\n*,\n*:before,\n*:after {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\n:focus,\n:active {\n  outline: none;\n}\n\na:focus,\na:active {\n  outline: none;\n}\n\nnav,\nfooter,\nheader,\naside {\n  display: block;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n  font-size: 10px;\n  line-height: 1;\n  -ms-text-size-adjust: 100%;\n  -moz-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n}\n\ninput,\nbutton,\ntextarea {\n  font-family: inherit;\n}\n\ninput::-ms-clear {\n  display: none;\n}\n\nbutton {\n  cursor: pointer;\n}\n\nbutton::-moz-focus-inner {\n  padding: 0;\n  border: 0;\n}\n\na,\na:visited {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\nul li {\n  list-style: none;\n}\n\nimg {\n  vertical-align: top;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-size: inherit;\n  font-weight: 400;\n}\n\n/*--------------------*/\n.freeze {\n  overflow: hidden;\n}\n\n.padding {\n  padding-right: 17px;\n}\n\n.hidden_svg {\n  display: none;\n}\n\n/* Colors */\n/* Transitions */\n/* Breakpoints */\nbody {\n  background: rgba(238, 37, 97, 0.986);\n  font-family: \"Montserrat\";\n}\n\n.hero-section {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n.hero-section__form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 5rem 4rem 4rem 4rem;\n  gap: 2.5rem;\n  max-width: 60rem;\n  min-width: 32rem;\n  min-height: 45rem;\n  background-color: white;\n  border-radius: 2.2rem;\n}\n@media (max-width: 576px) {\n  .hero-section__form {\n    padding: 5rem 2rem 4rem 2rem;\n  }\n}\n.hero-section__form-title {\n  font-weight: 500;\n  font-size: 4rem;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 3;\n  -webkit-box-orient: vertical;\n  max-height: 3em;\n}\n@media (max-width: 576px) {\n  .hero-section__form-title {\n    font-size: 2.8rem;\n  }\n}\n.hero-section__form-field-wrap input,\n.hero-section__form-field-wrap textarea {\n  width: 100%;\n  padding: 2rem 1rem;\n  background-color: rgb(226, 226, 250);\n  border-radius: 2.2rem;\n  font-size: 1.5rem;\n  box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\n}\n@media (max-width: 576px) {\n  .hero-section__form-field-wrap input,\n  .hero-section__form-field-wrap textarea {\n    padding: 1.2rem 1rem;\n  }\n}\n.hero-section__form-field-wrap textarea {\n  resize: none;\n}\n@media (max-height: 735px) {\n  .hero-section__form-field-wrap textarea {\n    max-height: 15rem;\n  }\n}\n.hero-section__form-submit {\n  font-size: 2rem;\n  font-weight: 500;\n  width: 100%;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(238, 37, 97, 0.986);\n}\n.hero-section .invalid-field,\n.hero-section .invalid-email {\n  position: relative;\n}\n.hero-section .invalid-field input,\n.hero-section .invalid-field textarea,\n.hero-section .invalid-email input,\n.hero-section .invalid-email textarea {\n  box-shadow: 0 0 1.5rem red;\n}\n.hero-section .invalid-field::after,\n.hero-section .invalid-email::after {\n  position: absolute;\n  bottom: -2.5rem;\n  left: 0.5rem;\n  width: 100%;\n  height: 2rem;\n  color: red;\n  font-size: 1.2rem;\n}\n@media (max-width: 576px) {\n  .hero-section .invalid-field::after,\n  .hero-section .invalid-email::after {\n    font-size: 1rem;\n  }\n}\n.hero-section .invalid-field::after {\n  content: \"Обязательное поле!\" !important;\n}\n.hero-section .invalid-email::after {\n  content: \"Некорректный email!\";\n}\n\n.second-section {\n  min-height: 30rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.second-section__popup-btn {\n  font-size: 2rem;\n  font-weight: 500;\n  padding: 2rem 1rem;\n  border-radius: 2.2rem;\n  background-color: rgba(89, 130, 245, 0.986);\n}\n\n.popup {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  visibility: hidden;\n  transform: translate(-50%, -50%);\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.4);\n  transition: all 0.3s ease 0s;\n}\n.popup.active {\n  opacity: 1;\n  visibility: visible;\n}\n.popup.active .popup__wrapper {\n  transform: rotateZ(0deg);\n}\n.popup__wrapper {\n  position: relative;\n  width: 90%;\n  max-width: 40rem;\n  transform: rotateZ(90deg);\n  transition: transform 0.3s ease 0s;\n}\n.popup__close-btn {\n  position: absolute;\n  top: 2rem;\n  right: 2rem;\n  width: 3rem;\n  height: 3rem;\n  fill: rgba(238, 37, 97, 0.986);\n  cursor: pointer;\n}\n.popup__content {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  gap: 4rem;\n  width: 100%;\n  height: 40rem;\n  padding: 2rem;\n  background-color: white;\n  border-radius: 2.2rem;\n  font-size: 16px;\n  font-weight: 500;\n}\n.popup__result-message {\n  font-size: 3rem;\n  transform: translateY(-100%);\n  text-transform: uppercase;\n}\n.popup__result-text {\n  font-size: 2rem;\n  text-align: center;\n  white-space: pre-line;\n}\n.popup .popup-info__content-title {\n  text-align: center;\n  font-size: 4rem;\n  transform: translateY(-100%);\n}\n.popup .popup-info__content-text {\n  text-align: center;\n}\n\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\n  font-weight: 500;\n}\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\n  font-weight: 400;\n}\n/* Colors */\n/* Transitions */\n/* Breakpoints */","/*Обнуление*/\r\n* {\r\n  padding: 0;\r\n  margin: 0;\r\n  border: 0;\r\n}\r\n*,\r\n*:before,\r\n*:after {\r\n  -moz-box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n:focus,\r\n:active {\r\n  outline: none;\r\n}\r\na:focus,\r\na:active {\r\n  outline: none;\r\n}\r\n\r\nnav,\r\nfooter,\r\nheader,\r\naside {\r\n  display: block;\r\n}\r\n\r\nhtml,\r\nbody {\r\n  height: 100%;\r\n  width: 100%;\r\n  font-size: 10px;\r\n  line-height: 1;\r\n  -ms-text-size-adjust: 100%;\r\n  -moz-text-size-adjust: 100%;\r\n  -webkit-text-size-adjust: 100%;\r\n}\r\ninput,\r\nbutton,\r\ntextarea {\r\n  font-family: inherit;\r\n}\r\n\r\ninput::-ms-clear {\r\n  display: none;\r\n}\r\nbutton {\r\n  cursor: pointer;\r\n}\r\nbutton::-moz-focus-inner {\r\n  padding: 0;\r\n  border: 0;\r\n}\r\na,\r\na:visited {\r\n  text-decoration: none;\r\n}\r\na:hover {\r\n  text-decoration: none;\r\n}\r\nul li {\r\n  list-style: none;\r\n}\r\nimg {\r\n  vertical-align: top;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n  font-size: inherit;\r\n  font-weight: 400;\r\n}\r\n/*--------------------*/\r\n",".freeze {\r\n  overflow: hidden;\r\n}\r\n\r\n.padding {\r\n  padding-right: 17px;\r\n}\r\n\r\n.hidden_svg {\r\n  display: none;\r\n}\r\n","/* Colors */\r\n$white: #ffffff;\r\n$black: #040504;\r\n$red: rgba(238, 37, 97, 0.986);\r\n$blue: rgba(89, 130, 245, 0.986);\r\n\r\n/* Transitions */\r\n$transition-duration-default: 0.3s;\r\n$transition-delay-default: 0.3s;\r\n$transition-default: 0.3s linear;\r\n\r\n$delay-animation-page: 0.3s;\r\n\r\n/* Breakpoints */\r\n$breakpoint-xxl: 1920px;\r\n$breakpoint-xl: 1680px;\r\n$breakpoint-lg: 1279px;\r\n$breakpoint-md: 768px;\r\n$breakpoint-sm: 576px;\r\n","@import \"variables.scss\";\r\n\r\nbody {\r\n  background: $red;\r\n  font-family: \"Montserrat\";\r\n}\r\n\r\n.hero-section {\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  padding-left: 2rem;\r\n  padding-right: 2rem;\r\n  padding-top: 1rem;\r\n  padding-bottom: 1rem;\r\n\r\n  &__form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    padding: 5rem 4rem 4rem 4rem;\r\n    gap: 2.5rem;\r\n    max-width: 60rem;\r\n    min-width: 32rem;\r\n    min-height: 45rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n\r\n    @media (max-width: $breakpoint-sm) {\r\n      padding: 5rem 2rem 4rem 2rem;\r\n    }\r\n\r\n    &-title {\r\n      font-weight: 500;\r\n      font-size: 4rem;\r\n\r\n      overflow: hidden;\r\n      text-overflow: ellipsis;\r\n      display: -webkit-box;\r\n      -webkit-line-clamp: 3;\r\n      -webkit-box-orient: vertical;\r\n      max-height: 3em;\r\n\r\n      @media (max-width: $breakpoint-sm) {\r\n        font-size: 2.8rem;\r\n      }\r\n    }\r\n\r\n    &-field-wrap {\r\n      input,\r\n      textarea {\r\n        width: 100%;\r\n        padding: 2rem 1rem;\r\n        background-color: rgb(226, 226, 250);\r\n        border-radius: 2.2rem;\r\n        font-size: 1.5rem;\r\n        box-shadow: inset 2rem 6rem 0 2rem rgb(226, 226, 250);\r\n\r\n        @media (max-width: $breakpoint-sm) {\r\n          padding: 1.2rem 1rem;\r\n        }\r\n      }\r\n\r\n      textarea {\r\n        resize: none;\r\n\r\n        @media (max-height: 735px) {\r\n          max-height: 15rem;\r\n        }\r\n      }\r\n    }\r\n\r\n    &-submit {\r\n      font-size: 2rem;\r\n      font-weight: 500;\r\n      width: 100%;\r\n      padding: 2rem 1rem;\r\n      border-radius: 2.2rem;\r\n      background-color: $red;\r\n    }\r\n  }\r\n\r\n  .invalid-field,\r\n  .invalid-email {\r\n    position: relative;\r\n    input,\r\n    textarea {\r\n      box-shadow: 0 0 1.5rem red;\r\n    }\r\n\r\n    &::after {\r\n      position: absolute;\r\n      bottom: -2.5rem;\r\n      left: 0.5rem;\r\n      width: 100%;\r\n      height: 2rem;\r\n      color: red;\r\n      font-size: 1.2rem;\r\n\r\n      @media (max-width: $breakpoint-sm) {\r\n        font-size: 1rem;\r\n      }\r\n    }\r\n  }\r\n\r\n  .invalid-field {\r\n    &::after {\r\n      content: \"Обязательное поле!\" !important;\r\n    }\r\n  }\r\n\r\n  .invalid-email {\r\n    &::after {\r\n      content: \"Некорректный email!\";\r\n    }\r\n  }\r\n}\r\n\r\n.second-section {\r\n  min-height: 30rem;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n\r\n  &__popup-btn {\r\n    font-size: 2rem;\r\n    font-weight: 500;\r\n    padding: 2rem 1rem;\r\n    border-radius: 2.2rem;\r\n    background-color: $blue;\r\n  }\r\n}\r\n\r\n.popup {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: fixed;\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 0;\r\n  visibility: hidden;\r\n  transform: translate(-50%, -50%);\r\n  width: 100%;\r\n  height: 100%;\r\n  overflow: hidden;\r\n  background-color: rgba($color: #000000, $alpha: 0.4);\r\n  transition: all $transition-duration-default ease 0s;\r\n\r\n  &.active {\r\n    opacity: 1;\r\n    visibility: visible;\r\n    .popup__wrapper {\r\n      transform: rotateZ(0deg);\r\n    }\r\n  }\r\n\r\n  &__wrapper {\r\n    position: relative;\r\n    width: 90%;\r\n    max-width: 40rem;\r\n    transform: rotateZ(90deg);\r\n    transition: transform $transition-duration-default ease 0s;\r\n  }\r\n\r\n  &__close-btn {\r\n    position: absolute;\r\n    top: 2rem;\r\n    right: 2rem;\r\n    width: 3rem;\r\n    height: 3rem;\r\n    fill: $red;\r\n    cursor: pointer;\r\n  }\r\n\r\n  &__content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    gap: 4rem;\r\n    width: 100%;\r\n\r\n    height: 40rem;\r\n    padding: 2rem;\r\n    background-color: white;\r\n    border-radius: 2.2rem;\r\n    font-size: 16px;\r\n    font-weight: 500;\r\n  }\r\n\r\n  &__result-message {\r\n    font-size: 3rem;\r\n    transform: translateY(-100%);\r\n    text-transform: uppercase;\r\n  }\r\n\r\n  &__result-text {\r\n    font-size: 2rem;\r\n    text-align: center;\r\n    white-space: pre-line;\r\n  }\r\n\r\n  .popup-info__content {\r\n    &-title {\r\n      text-align: center;\r\n      font-size: 4rem;\r\n      transform: translateY(-100%);\r\n    }\r\n\r\n    &-text {\r\n      text-align: center;\r\n    }\r\n  }\r\n}\r\n","@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Medium.woff\") format(\"woff\");\r\n  font-weight: 500;\r\n}\r\n\r\n@font-face {\r\n  font-family: \"Montserrat\";\r\n  src: url(\"./fonts/Montserrat-Regular.woff\") format(\"woff\");\r\n  font-weight: 400;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10693,52 +10749,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/html-loader/dist/runtime/getUrl.js */ "./node_modules/html-loader/dist/runtime/getUrl.js");
-/* harmony import */ var _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./assets/cross.svg */ "./src/assets/cross.svg"), __webpack_require__.b);
 // Module
-var ___HTML_LOADER_REPLACEMENT_0___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_0___);
-var code = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ITPROFIT</title>\r\n  </head>\r\n  <body>\r\n    <main>\r\n      <section class=\"hero-section\">\r\n        <form class=\"hero-section__form\">\r\n          <div class=\"hero-section__form-title\">\r\n            Fill out the fields below to send us a message\r\n          </div>\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"text\" name=\"name\" placeholder=\"NAME\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"email\" name=\"email\" placeholder=\"EMAIL\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input\r\n              class=\"tel\"\r\n              type=\"tel\"\r\n              id=\"tel\"\r\n              name=\"tel\"\r\n              placeholder=\"+375\"\r\n            />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <textarea\r\n              name=\"msg\"\r\n              id=\"text-area-msg\"\r\n              cols=\"30\"\r\n              rows=\"10\"\r\n              placeholder=\"MESSAGE\"\r\n            ></textarea>\r\n          </div>\r\n\r\n          <button class=\"hero-section__form-submit\" type=\"submit\">\r\n            Submit\r\n          </button>\r\n        </form>\r\n      </section>\r\n      <section class=\"second-section\">\r\n        <button class=\"second-section__popup-btn\">Open popup</button>\r\n      </section>\r\n    </main>\r\n    <div class=\"popup-message popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <img\r\n          src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\r\n          class=\"popup-info__close-btn popup__close-btn\"\r\n        />\r\n        <div class=\"popup-message__content popup__content\">\r\n          <div class=\"popup__result-message\"></div>\r\n          <div class=\"popup__result-text\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"popup-info popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <span class=\"popup-info__close-btn popup__close-btn\">X</span>\r\n        <div class=\"popup-info__content popup__content\">\r\n          <div class=\"popup-info__content-title\">Hello</div>\r\n          <div>Thanks for clicking on me! I'm a modal window!</div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
+var code = "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ITPROFIT</title>\r\n  </head>\r\n  <body>\r\n    <main>\r\n      <section class=\"hero-section\">\r\n        <form class=\"hero-section__form\">\r\n          <div class=\"hero-section__form-title\">\r\n            Заполните поля, чтобы отправить нам сообщение!\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"text\" name=\"name\" placeholder=\"ИМЯ\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input type=\"email\" name=\"email\" placeholder=\"ВАША ПОЧТА\" />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <input\r\n              class=\"tel\"\r\n              type=\"tel\"\r\n              id=\"tel\"\r\n              name=\"tel\"\r\n              placeholder=\"+375\"\r\n            />\r\n          </div>\r\n\r\n          <div class=\"hero-section__form-field-wrap\">\r\n            <textarea\r\n              name=\"msg\"\r\n              id=\"text-area-msg\"\r\n              cols=\"30\"\r\n              rows=\"10\"\r\n              placeholder=\"СООБЩЕНИЕ\"\r\n            ></textarea>\r\n          </div>\r\n\r\n          <button class=\"hero-section__form-submit\" type=\"submit\">\r\n            ОТПРАВИТЬ\r\n          </button>\r\n        </form>\r\n      </section>\r\n\r\n      <section class=\"second-section\">\r\n        <button class=\"second-section__popup-btn\">\r\n          Открыть модальное окно\r\n        </button>\r\n      </section>\r\n    </main>\r\n\r\n    <div class=\"popup-message popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <svg class=\"popup__close-btn\">\r\n          <use xlink:href=\"#icon1\"></use>\r\n        </svg>\r\n\r\n        <div class=\"popup-message__content popup__content\">\r\n          <div class=\"popup__result-message\"></div>\r\n          <div class=\"popup__result-text\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"popup-info popup\">\r\n      <div class=\"popup__wrapper\">\r\n        <svg class=\"popup__close-btn\">\r\n          <use xlink:href=\"#icon1\"></use>\r\n        </svg>\r\n\r\n        <div class=\"popup-info__content popup__content\">\r\n          <div class=\"popup-info__content-title\">Привет!</div>\r\n          <div class=\"popup-info__content-text\">\r\n            Спасибо, что нажали на меня! Я модальное окно!\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <svg class=\"hidden_svg\">\r\n      <symbol\r\n        id=\"icon1\"\r\n        viewBox=\"0 0 1024 1024\"\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n      >\r\n        <path\r\n          d=\"M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z\"\r\n        />\r\n      </symbol>\r\n    </svg>\r\n  </body>\r\n</html>\r\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
-
-/***/ }),
-
-/***/ "./node_modules/html-loader/dist/runtime/getUrl.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/html-loader/dist/runtime/getUrl.js ***!
-  \*********************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    // eslint-disable-next-line no-param-reassign
-    options = {};
-  }
-
-  if (!url) {
-    return url;
-  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-
-
-  url = String(url.__esModule ? url.default : url);
-
-  if (options.hash) {
-    // eslint-disable-next-line no-param-reassign
-    url += options.hash;
-  }
-
-  if (options.maybeNeedQuotes && /[\t\n\f\r "'=<>`]/.test(url)) {
-    return "\"".concat(url, "\"");
-  }
-
-  return url;
-};
 
 /***/ }),
 
@@ -11067,17 +11081,6 @@ function styleTagTransform(css, styleElement) {
   }
 }
 module.exports = styleTagTransform;
-
-/***/ }),
-
-/***/ "./src/assets/cross.svg":
-/*!******************************!*\
-  !*** ./src/assets/cross.svg ***!
-  \******************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "assets/cross.svg";
 
 /***/ }),
 
@@ -15256,13 +15259,13 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener("DOMContentLoaded", function () {
   var popup = new _js_popup__WEBPACK_IMPORTED_MODULE_4__["default"](".popup-info");
   var messagePopup = new _js_popup__WEBPACK_IMPORTED_MODULE_4__["default"](".popup-message");
-  var btn = document.querySelector(".second-section__popup-btn");
+  var popupBtn = document.querySelector(".second-section__popup-btn");
   new _js_form__WEBPACK_IMPORTED_MODULE_3__["default"](".hero-section__form", messagePopup);
   (0,_js_mask_js__WEBPACK_IMPORTED_MODULE_2__["default"])("tel");
-  btn.addEventListener("click", popup.show.bind(popup));
+  popupBtn.addEventListener("click", popup.show.bind(popup));
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.695b3ebb7311f6c12d51.js.map
+//# sourceMappingURL=main.a404b872f3fd3fe0d9a9.js.map
